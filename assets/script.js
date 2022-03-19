@@ -1,4 +1,3 @@
-const arrayIds = [0, 1, 2, 3, 4];
 const arrayQuestionsStrings = [
     "Commonly used data types do NOT include:",
     "The condition in an if/else statement is enclosed in:",
@@ -16,11 +15,35 @@ const arrayAnswers = [
 const arrayAnswerNumbers = [2, 1, 3, 2, 3];
 
 const questionObj = {
-    questionId: arrayIds,
     questionString: arrayQuestionsStrings,
     answersArray: arrayAnswers,
     answerNumber: arrayAnswerNumbers
 };
+
+// Starts the page with an index of 0.
+var index = 0;
+// console.log(questionObj);
+
+var createQuestionEl = function() {
+
+    var questionH2El = document.createElement("h2"); // creates the <h2> html element
+    questionH2El.className = "question-h2"; // assigns the class question-h2 to the <h2> element
+    questionH2El.innerHTML = questionObj.questionString[index];
+
+    console.log(questionObj.questionString[index]);
+    
+    var answerList = document.querySelector("#answers-list");
+    for (i = 0; i < questionObj.answersArray.length; i++) {
+        var answerItemEl = document.createElement("li"); // creates the <li> html element
+        answerItemEl.className = "answer-item"; // assigns the class answer-item to the <li> element
+        answerList.append(answerItemEl); 
+    }
+    
+    // Adds one to the index list to generate the next question
+    index++;
+}
+
+
 
 // Sets the timer function and its variables reused bellow
 var count = 75;
