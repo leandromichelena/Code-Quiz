@@ -22,27 +22,69 @@ const questionObj = {
     answerNumber: arrayAnswerNumbers
 };
 
+// Sets the timer function and its variables reused bellow
+var count = 75;
+var timer = document.querySelector("#counter")
+
+var startTimer = function () {
+    var countdown = setInterval(function () {
+        count = count - 1;
+        timer.innerHTML = count;
+        // console.log(count);
+
+        // stops the timer from going negative
+        if (count === 0) {
+            clearInterval(countdown);
+            showEndGame();
+        };
+    }, 1000); // repeats the countdown function every 1000ms 
+};
+
+// Declaring display variables
 var gameDisplay = document.getElementById("game-div");
 var startScreenDisplay = document.getElementById("welcome-screen");
 var highScoresDisplay = document.getElementById("high-scores");
+var endGameDisplay = document.getElementById("end-game");
+var timerDisplay = document.getElementById("timer");
 
 // Display functions
 function startGame() {
     gameDisplay.style.display = "block";
     startScreenDisplay.style.display = "none";
     highScoresDisplay.style.display = "none";
+    endGameDisplay.style.display = "none";
+    timerDisplay.style.display = "inline";
+
+    // Sets the timer to 75
+    count = 75;
+    timer.innerHTML = count;
+    startTimer();
+};
+
+function showEndGame() {
+    highScoresDisplay.style.display = "none";
+    gameDisplay.style.display = "none";
+    startScreenDisplay.style.display = "none";
+    endGameDisplay.style.display = "block";
+    timerDisplay.style.display = "none";
 };
 
 function showHighScores() {
     highScoresDisplay.style.display = "block";
     gameDisplay.style.display = "none";
     startScreenDisplay.style.display = "none";
+    endGameDisplay.style.display = "none";
+    timerDisplay.style.display = "none";
 };
 
 function showWelcomeScreen() {
     startScreenDisplay.style.display = "block";
     highScoresDisplay.style.display = "none";
     gameDisplay.style.display = "none";
+    endGameDisplay.style.display = "none";
+    timerDisplay.style.display = "none";
 };
 
+
+// Display welcome screen when the page loads
 showWelcomeScreen();

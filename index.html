@@ -11,13 +11,13 @@
 </head>
 <body>
     <h3 onclick="showHighScores()" class="high-scores-link">Show high scores</p>
-    <h3 class="timer">Time: </p>
+    <h3 class="timer" id="timer">Time: <span id="counter"></span></h3>
     
     <section class="welcome-screen" id="welcome-screen">
         <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related questions within the time limit. <br>
         Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-        <button onclick="startGame()">Start Quiz</button>
+        <button class="btn" onclick="startGame()">Start Quiz</button>
     </section>
 
     <main class="game-div" id="game-div">
@@ -27,6 +27,14 @@
         </div>
     </main>
 
+    <section class="end-game" id="end-game">
+        <h2>All done!</h2>
+        <p>Your final score is: <span id="score"></span></p>
+        <p>Enter initials:</p>
+        <input type="text" name="initials"/>
+        <button class="btn" onclick="showHighScores()">Submit</button>
+    </section>
+
     <section class="high-scores" id="high-scores">
         <h2>High Scores</h2>
         <div class="high-scores-list-div">
@@ -34,8 +42,8 @@
         </div>
         <p>High Scores will be displayed here</p>
         <div class="buttons-high-scores">
-            <button onclick="showWelcomeScreen()">Go back</button>
-            <button onclick="clearHighScores()">Clear high scores</button>
+            <button class="btn" onclick="showWelcomeScreen()">Go back</button>
+            <button class="btn" onclick="clearHighScores()">Clear high scores</button>
         </div>
     </section>
 
