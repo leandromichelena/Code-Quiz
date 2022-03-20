@@ -20,10 +20,13 @@ const questionObj = {
     answerNumber: arrayAnswerNumbers
 };
 
+var highScores = [];
+
 var answerList = document.querySelector("#answers-list");
 var questionDiv = document.querySelector(".question-div");
 var rightOrWrong = document.querySelector(".right-or-wrong");
 var scoreEl = document.querySelector("#score");
+var scoreSubmit = document.querySelector("#score-submit");
 
 // Starts the page with an index of 0.
 var index = 0;
@@ -84,23 +87,36 @@ var answerClick = function(event) {
 var count = 75;
 var timer = document.querySelector("#counter")
 
-var startTimer = function () {
-    var countdown = setInterval(function () {
-        count = count - 1;
-        timer.innerHTML = count;
-        // console.log(count);
+var countdown = function() {
+    count = count - 1;
+    timer.innerHTML = count;
+    // console.log(count);
 
-        // stops the timer from going negative
-        if (count <= 0) {
-            clearInterval(countdown);
-            showEndGame();
-        };
-    }, 1000); // repeats the countdown function every 1000ms 
+    // stops the timer from going negative
+    if (count <= 0) {
+        clearInterval(timerInterval);
+        showEndGame();
+    };
+};
+
+var timerInterval // variable to store the interval      
+var startTimer = function () {
+    timerInterval = setInterval(countdown, 1000); // repeats countdown every 1000ms 
 };
 
 // Displays the score at the end of the game 
 var printScore = function (currentScore) {
     scoreEl.textContent = currentScore;
+};
+
+var addScore = function () {
+    var initialsInput = document.querySelector("input[name='initials']").value;
+
+    var newScore = {
+        "score": count,
+        "initials": initialsInput
+    }
+    highScores.push(newScore);
 };
 
 // Declaring display variables
@@ -137,12 +153,18 @@ function showEndGame() {
     timerDisplay.style.display = "none";
 
     // Stops the countdown for the score
+    clearInterval(timerInterval);
     var currentScore = count;
     console.log("currentScore is " + currentScore);
     printScore(currentScore);
+    // return currentScore;
 };
 
-function showHighScores() {
+function showHighScores (event) {
+    event.preventDefault(); // prevents the browser from refreshing after submitting the form
+
+    addScore();
+
     highScoresDisplay.style.display = "block";
     gameDisplay.style.display = "none";
     startScreenDisplay.style.display = "none";
@@ -159,6 +181,7 @@ function showWelcomeScreen() {
 };
 
 answerList.addEventListener("click", answerClick);
+scoreSubmit.addEventListener("submit", showHighScores);
 
 // Display welcome screen when the page loads
 showWelcomeScreen();

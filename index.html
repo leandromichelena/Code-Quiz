@@ -32,8 +32,10 @@
         <h2>All done!</h2>
         <p>Your final score is: <span id="score"></span></p>
         <p>Enter initials:</p>
-        <input type="text" name="initials"/>
-        <button class="btn" onclick="showHighScores()">Submit</button>
+        <form id="score-submit">
+            <input type="text" name="initials"/>
+            <button class="btn" type="submit" id="submit-btn">Submit</button>
+        </form>
     </section>
 
     <section class="high-scores" id="high-scores">
