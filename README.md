@@ -9,8 +9,8 @@ The objective of this exercise is to feature dynamically updated HTML and CSS po
 ## Website
 https://leandromichelena.github.io/Code-Quiz/
 
-## Page Screengrab
-![](./assets/images/PageScreenshot.jpg)
+## Page Screenshot
+![](./assets/images/PageScreenshot.png)
 
 ## Built With
 * HTML
