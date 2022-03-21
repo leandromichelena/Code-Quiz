@@ -109,6 +109,18 @@ var printScore = function (currentScore) {
     scoreEl.textContent = currentScore;
 };
 
+var submitHighScore = function(event) {
+    // prevents the browser from refreshing after submitting the form
+    event.preventDefault();
+    showHighScores();
+}
+
+var clearHighScores = function() {
+    highScores = [];
+    saveScores();
+    scoresList.innerHTML = "";
+};
+
 var addScore = function () {
     var initialsInput = document.querySelector("input[name='initials']").value;
 
@@ -179,9 +191,9 @@ function showEndGame() {
     // return currentScore;
 };
 
-function showHighScores (event) {
-    event.preventDefault(); // prevents the browser from refreshing after submitting the form
+function showHighScores() {
 
+    showHighScores.innerHTML = "";
     addScore();
     saveScores();
 
@@ -195,6 +207,7 @@ function showHighScores (event) {
 
 function showWelcomeScreen() {
     startScreenDisplay.style.display = "block";
+    highScoresLink.style.display = "block";
     highScoresDisplay.style.display = "none";
     gameDisplay.style.display = "none";
     endGameDisplay.style.display = "none";
@@ -225,7 +238,7 @@ var loadScores = function () {
 
 
 answerList.addEventListener("click", answerClick);
-scoreSubmit.addEventListener("submit", showHighScores);
+scoreSubmit.addEventListener("submit", submitHighScore);
 
 // Display welcome screen when the page loads
 showWelcomeScreen();

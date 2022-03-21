@@ -1,0 +1,104 @@
+/* Defines color variables to be used bellow */
+:root { 
+    --color1: #e0e1dd;
+    --color2: #415a77;
+    /* Uses RGBA for transparency */
+    --color2transparency: rgba(65, 90, 119, 0.8);
+    --color3: #1b263b;
+}
+
+/* Used to remove browser default styles of every element on the page. */
+* {
+    margin: 0;
+    padding: 0;  
+    box-sizing: border-box;
+}
+
+body {
+    justify-content: center;
+    color: var(--color2); /* Apply light blue / teal color to text */
+    font-family: Avenir, Montserrat, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 40px;
+}
+
+.high-scores-link {
+    cursor: pointer;
+}
+
+.title {
+    margin: 20px 0 20px 0;
+    text-align: center;
+}
+
+.welcome-screen {
+    text-align: center;
+}
+
+.welcome-screen p {
+    margin-bottom: 20px;
+}
+
+.game-div {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.question-div {
+    height: 72px;
+}
+
+.answers-div {
+    margin-left: 25px;
+}
+
+.answers-list li {
+    margin: 10px 0;
+    cursor: pointer;
+    width: fit-content;
+}
+
+input {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px, solid, rgba(65, 90, 119, 0.8);
+}
+
+.end-game, .high-scores {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.end-game p {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: medium;
+}
+
+.end-game button {
+    display: block;
+    margin-top: 10px;
+}
+
+.high-scores-list {
+    margin-bottom: 15px;
+}
+
+.btn {
+  border-radius: 8px;
+  color:  var(--color1);
+  background:  var(--color3);
+  padding: 8px 16px 8px 16px;
+  text-decoration: none;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color2);
+  text-decoration: none;
+}
