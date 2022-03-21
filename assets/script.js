@@ -112,6 +112,9 @@ var printScore = function (currentScore) {
 var submitHighScore = function(event) {
     // prevents the browser from refreshing after submitting the form
     event.preventDefault();
+    showHighScores.innerHTML = "";
+    addScore();
+    saveScores();
     showHighScores();
 }
 
@@ -186,17 +189,14 @@ function showEndGame() {
     // Stops the countdown for the score
     clearInterval(timerInterval);
     var currentScore = count;
+    if (currentScore <= 0){
+        currentScore = 0
+    }
     console.log("currentScore is " + currentScore);
     printScore(currentScore);
-    // return currentScore;
 };
 
 function showHighScores() {
-
-    showHighScores.innerHTML = "";
-    addScore();
-    saveScores();
-
     highScoresLink.style.display = "none";
     highScoresDisplay.style.display = "block";
     gameDisplay.style.display = "none";
@@ -213,6 +213,7 @@ function showWelcomeScreen() {
     endGameDisplay.style.display = "none";
     timerDisplay.style.display = "none";
 
+    clearInterval(timerInterval);
     loadScores();
 };
 

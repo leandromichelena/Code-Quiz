@@ -15,7 +15,7 @@ https://leandromichelena.github.io/Code-Quiz/
 ## Built With
 * HTML
 * CSS
-* javascrip
+* javascript
 
 ## Support
 If you find any bugs or have any questions, please contact me on Github.
