@@ -27,10 +27,10 @@ var questionDiv = document.querySelector(".question-div");
 var rightOrWrong = document.querySelector(".right-or-wrong");
 var scoreEl = document.querySelector("#score");
 var scoreSubmit = document.querySelector("#score-submit");
+var scoresList = document.querySelector(".high-scores-list");
 
 // Starts the page with an index of 0.
 var index = 0;
-// console.log(questionObj);
 
 var createQuestionEl = function() {
 
@@ -115,11 +115,29 @@ var addScore = function () {
     var newScore = {
         "score": count,
         "initials": initialsInput
-    }
+    };
+
     highScores.push(newScore);
+
+    highScores.sort(function (a, b) {
+        return b.score - a.score; 
+    });
+
+    createScoreLiEl();
+};
+
+var createScoreLiEl = function () {
+    for (i = 0; i < highScores.length; i++) {
+        var scoreLiEl = document.createElement("li"); // creates the <li> html element
+        scoreLiEl.className = "score-item"; // assigns the class score-item to the <li> element
+        scoreLiEl.innerHTML = highScores[i].initials + " - " + highScores[i].score;
+
+        scoresList.append(scoreLiEl);
+    };
 };
 
 // Declaring display variables
+var highScoresLink = document.getElementById("high-scores-link");
 var gameDisplay = document.getElementById("game-div");
 var startScreenDisplay = document.getElementById("welcome-screen");
 var highScoresDisplay = document.getElementById("high-scores");
@@ -134,9 +152,10 @@ function startGame() {
     endGameDisplay.style.display = "none";
     timerDisplay.style.display = "inline";
 
-    // Clears the question and answers from previous game
+    // Clears the question and answers from previous game. Clears the score list.
     questionDiv.innerHTML = "";
     answerList.innerHTML = "";
+    scoresList.innerHTML = "";
     // Sets question index to 0 and resets the timer to 75
     index = 0;
     count = 75;
@@ -164,7 +183,9 @@ function showHighScores (event) {
     event.preventDefault(); // prevents the browser from refreshing after submitting the form
 
     addScore();
+    saveScores();
 
+    highScoresLink.style.display = "none";
     highScoresDisplay.style.display = "block";
     gameDisplay.style.display = "none";
     startScreenDisplay.style.display = "none";
@@ -178,7 +199,30 @@ function showWelcomeScreen() {
     gameDisplay.style.display = "none";
     endGameDisplay.style.display = "none";
     timerDisplay.style.display = "none";
+
+    loadScores();
 };
+
+var saveScores = function () {
+    localStorage.setItem("scores", JSON.stringify(highScores));
+}
+
+var loadScores = function () {
+    // get from local storage 
+    var savedScores = localStorage.getItem("scores");
+    // debugger;
+
+    if (!savedScores) {
+        return false;
+    }
+
+    console.log("Loaded scores successfully");
+    // convert string back to array 
+    savedScores = JSON.parse(savedScores);
+    console.log(savedScores);
+    highScores = savedScores;
+};
+
 
 answerList.addEventListener("click", answerClick);
 scoreSubmit.addEventListener("submit", showHighScores);

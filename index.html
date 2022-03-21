@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <h3 onclick="showHighScores()" class="high-scores-link">Show high scores</p>
+    <h3 onclick="showHighScores()" class="high-scores-link" id="high-scores-link">Show high scores</p>
     <h3 class="timer" id="timer">Time: <span id="counter"></span></h3>
     
     <section class="welcome-screen" id="welcome-screen">
@@ -41,9 +41,8 @@
     <section class="high-scores" id="high-scores">
         <h2>High Scores</h2>
         <div class="high-scores-list-div">
-            <ol></ol>
+            <ol class="high-scores-list"></ol>
         </div>
-        <p>High Scores will be displayed here</p>
         <div class="buttons-high-scores">
             <button class="btn" onclick="showWelcomeScreen()">Go back</button>
             <button class="btn" onclick="clearHighScores()">Clear high scores</button>
